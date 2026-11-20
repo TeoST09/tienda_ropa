@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -30,8 +32,30 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureActions();
+        $this->configurePasswordResetNotification();
         $this->configureViews();
         $this->configureRateLimiting();
+    }
+
+    private function configurePasswordResetNotification(): void
+    {
+        ResetPassword::toMailUsing(function (object $notifiable, string $token): MailMessage {
+            $url = url(route('password.reset', [
+                'token' => $token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+
+            $minutes = config('auth.passwords.'.config('auth.defaults.passwords').'.expire');
+
+            return (new MailMessage)
+                ->subject('Restablecer contraseña')
+                ->greeting('Hola')
+                ->line('Recibiste este correo porque solicitaste restablecer la contraseña de tu cuenta.')
+                ->action('Restablecer contraseña', $url)
+                ->line("Este enlace para restablecer la contraseña caducará en {$minutes} minutos.")
+                ->line('Si no solicitaste restablecer la contraseña, no necesitas hacer nada más.')
+                ->salutation('Saludos');
+        });
     }
 
     /**

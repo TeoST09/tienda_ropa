@@ -23,6 +23,11 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
+    {
+        title: 'Tallas',
+        href: '/tallas',
+        icon: LayoutGrid,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

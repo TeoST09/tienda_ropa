@@ -1,9 +1,8 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { dashboard, login } from '@/routes';
 import { register } from '@/routes';
 </script>
-
 <template>
     <Head title="Welcome">
         <link rel="preconnect" href="https://rsms.me/" />
@@ -184,7 +183,6 @@ import { register } from '@/routes';
                             fill="currentColor"
                         />
                     </svg>
-
                     <!-- 13 -->
                     <svg
                         class="relative -mt-[6.6rem] -ml-8 w-[438px] max-w-none [--stroke-color:#1B1B18] lg:ml-0 dark:[--stroke-color:#FF750F]"
@@ -239,7 +237,6 @@ import { register } from '@/routes';
                                 mask="url(#path-1-mask)"
                             />
                         </g>
-
                         <g
                             class="text-[#F3BEC7] opacity-100 transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[26px]"
                         >
@@ -287,7 +284,6 @@ import { register } from '@/routes';
                                 mask="url(#path-2-mask)"
                             />
                         </g>
-
                         <g
                             class="text-[#F8B803] opacity-100 mix-blend-color transition-all delay-400 duration-750 dark:text-[#391800] dark:mix-blend-hard-light starting:opacity-0 motion-safe:starting:-translate-x-[51px]"
                         >
@@ -335,7 +331,6 @@ import { register } from '@/routes';
                                 mask="url(#path-3-mask)"
                             />
                         </g>
-
                         <g
                             class="text-[#F3BEC7] opacity-100 mix-blend-multiply transition-all delay-400 duration-750 dark:text-[#733000] dark:mix-blend-normal starting:opacity-0 motion-safe:starting:-translate-x-[78px]"
                         >
@@ -383,7 +378,6 @@ import { register } from '@/routes';
                                 mask="url(#path-4-mask)"
                             />
                         </g>
-
                         <g
                             class="text-[#F3BEC7] opacity-100 mix-blend-hard-light transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[102px]"
                         >
