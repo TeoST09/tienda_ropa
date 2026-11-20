@@ -100,6 +100,26 @@ defineProps<{
             </Button>
         </div>
 
+        <div class="relative flex items-center justify-center">
+            <span class="absolute inset-x-0 border-t"></span>
+            <span class="relative bg-background px-3 text-xs text-muted-foreground">
+                O continúa con
+            </span>
+        </div>
+
+        <div class="flex justify-center">
+            <Button
+                as-child
+                variant="outline"
+                class="h-10 w-full max-w-[220px] justify-center gap-3 rounded-sm border-[#5f6368] bg-[#2b2b2b] px-4 font-medium text-white hover:bg-[#3c4043] hover:text-white"
+            >
+                <a href="/auth/google">
+                    <span aria-hidden="true" class="text-base font-bold">G</span>
+                    Login with Google
+                </a>
+            </Button>
+        </div>
+
         <div class="text-center text-sm text-muted-foreground">
             ¿No tienes una cuenta?
             <TextLink :href="register()" :tabindex="5">Regístrate</TextLink>
