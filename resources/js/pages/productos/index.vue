@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { Shirt, ShoppingCart } from '@lucide/vue';
 import { Button } from '@/components/ui/button';
 
@@ -20,6 +20,8 @@ defineProps<{
     productos: Producto[];
 }>();
 
+const page = usePage();
+
 const agregarAlCarrito = (producto: Producto) => {
     if (producto.stock !== null && producto.stock > 0) {
         router.post('/carrito/agregar', { producto_id: producto.id });
@@ -38,10 +40,16 @@ const tieneOferta = (producto: Producto) => Number(producto.oferta ?? 0) > 0;
                 as-child
                 variant="outline"
                 size="icon"
-                aria-label="Ver carrito"
+                :aria-label="`Ver carrito: ${page.props.carritoCount} artículos`"
             >
-                <Link href="/carrito">
+                <Link href="/carrito" class="relative">
                     <ShoppingCart class="size-4" />
+                    <span
+                        v-if="page.props.carritoCount > 0"
+                        class="absolute -top-2 -right-2 flex min-w-5 items-center justify-center rounded-full bg-destructive px-1 text-xs font-bold text-white"
+                    >
+                        {{ page.props.carritoCount }}
+                    </span>
                 </Link>
             </Button>
         </div>
