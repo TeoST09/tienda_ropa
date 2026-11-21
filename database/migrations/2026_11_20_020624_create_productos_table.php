@@ -21,8 +21,8 @@ return new class extends Migration
             $table->decimal('precio', 10, 2);
             $table->decimal('oferta', 10, 2)->nullable();
             $table->integer('stock')->default(0);
-            $table->date('fecha');
             $table->string('imagen', 255)->nullable();
+            $table->timestamps();
         });
     }
 
