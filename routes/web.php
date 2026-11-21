@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ColoresController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TallasController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('categorias.update');
         Route::delete('categorias/{categoria}', [CategoriasController::class, 'destroy'])
             ->name('categorias.destroy');
+
+        // Productos
+
+        Route::get('productos/admin', [ProductosController::class, 'index'])
+            ->name('productos.admin.index');
+        Route::get('productos/admin/crear', [ProductosController::class, 'create'])
+            ->name('productos.admin.create');
+        Route::post('productos/admin', [ProductosController::class, 'store'])
+            ->name('productos.admin.store');
+        Route::get('productos/admin/{producto}', [ProductosController::class, 'show'])
+            ->name('productos.admin.show');
+        Route::get('productos/admin/{producto}/editar', [ProductosController::class, 'edit'])
+            ->name('productos.admin.edit');
+        Route::put('productos/admin/{producto}', [ProductosController::class, 'update'])
+            ->name('productos.admin.update');
+        Route::delete('productos/admin/{producto}', [ProductosController::class, 'destroy'])
+            ->name('productos.admin.destroy');
     });
 });
 

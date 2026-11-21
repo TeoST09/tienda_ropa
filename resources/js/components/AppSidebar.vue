@@ -43,6 +43,11 @@ const mainNavItems = computed<NavItem[]>(() => [
                   href: '/categorias',
                   icon: LayoutGrid,
               },
+              {
+                  title: 'Productos',
+                  href: '/productos/admin',
+                  icon: LayoutGrid,
+              },
           ]
         : []),
 ]);
