@@ -38,6 +38,11 @@ const mainNavItems = computed<NavItem[]>(() => [
                     href: '/colores',
                     icon: LayoutGrid,
               },
+              {
+                  title: 'Categorías',
+                  href: '/categorias',
+                  icon: LayoutGrid,
+              },
           ]
         : []),
 ]);
