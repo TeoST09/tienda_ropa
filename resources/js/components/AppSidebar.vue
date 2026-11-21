@@ -36,6 +36,11 @@ const mainNavItems = computed<NavItem[]>(() => [
         href: dashboard(),
         icon: LayoutDashboard,
     },
+    {
+        title: 'Productos',
+        href: '/productos',
+        icon: Shirt,
+    },
     ...(page.props.auth.user?.rol === 2
         ? [
               {
@@ -59,7 +64,7 @@ const mainNavItems = computed<NavItem[]>(() => [
                   icon: Tags,
               },
               {
-                  title: 'Productos',
+                  title: 'Administrar productos',
                   href: '/productos/admin',
                   icon: Shirt,
               },

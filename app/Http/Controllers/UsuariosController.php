@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-Use App\Models\User;
 
 class UsuariosController extends Controller
 {
@@ -16,7 +16,7 @@ class UsuariosController extends Controller
 
         $search = $validation['search'] ?? null;
 
-        if($search) {
+        if ($search) {
             $consulta = User::where('name', 'like', "%{$search}%")
                 ->orWhere('email', 'like', "%{$search}%")
                 ->get();
@@ -62,15 +62,16 @@ class UsuariosController extends Controller
     public function show(User $usuario)
     {
         $usuario = User::findOrFail($usuario->id);
+
         return inertia('usuarios/show', [
-            'usuario' => $usuario
+            'usuario' => $usuario,
         ]);
     }
 
     public function edit(User $usuario)
     {
         return inertia('usuarios/edit', [
-            'usuario' => $usuario
+            'usuario' => $usuario,
         ]);
     }
 
@@ -78,7 +79,7 @@ class UsuariosController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $usuario->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$usuario->id,
             'password' => 'nullable|string|min:8|confirmed',
             'rol' => 'required|in:1,2',
         ]);

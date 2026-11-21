@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TallasController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('home');
@@ -18,6 +18,9 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
+
+    Route::get('productos', [ProductosController::class, 'indexUser'])
+        ->name('productos.indexUser');
 
     Route::middleware('admin')->group(function () {
         Route::get('tallas', [TallasController::class, 'index'])
@@ -64,6 +67,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('categorias.destroy');
 
         // Productos
+
+        Route::get('productos', [ProductosController::class, 'indexUser'])
+            ->name('productos.indexUser');
 
         Route::get('productos/admin', [ProductosController::class, 'index'])
             ->name('productos.admin.index');

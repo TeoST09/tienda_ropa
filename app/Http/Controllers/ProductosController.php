@@ -12,6 +12,15 @@ use Inertia\Inertia;
 
 class ProductosController extends Controller
 {
+    public function indexUser()
+    {
+        $productos = Productos::with(['categoria', 'color', 'talla'])->get();
+
+        return inertia('productos/index', [
+            'productos' => $productos,
+        ]);
+    }
+
     public function index(Request $request)
     {
 
