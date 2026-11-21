@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
+import { watch } from 'vue';
 import { Pencil, Search, Trash2 } from '@lucide/vue';
 import { toast } from 'vue-sonner';
 import { dashboard } from '@/routes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import type { FlashToast } from '@/types/ui';
 
 type Talla = {
     id: number;
@@ -16,6 +18,29 @@ defineProps<{
     search: string;
 }>();
 
+const page = usePage<{
+    flash: {
+        alert?: FlashToast;
+    };
+}>();
+
+watch(
+    () => page.flash.alert as FlashToast | undefined,
+    (alert) => {
+        if (alert) {
+            if (alert.type === 'success') {
+                toast.success(alert.message);
+            } else if (alert.type === 'error') {
+                toast.error(alert.message);
+            } else if (alert.type === 'warning') {
+                toast.warning(alert.message);
+            } else {
+                toast.info(alert.message);
+            }
+        }
+    },
+    { immediate: true }
+);
 
 const eliminarTalla = (talla: Talla) => {
     if (confirm(`¿Eliminar la talla ${talla.nombre}?`)) {

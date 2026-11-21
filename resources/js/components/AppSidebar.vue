@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import { BookOpen, FolderGit2, LayoutGrid } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -17,18 +18,29 @@ import {
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
+const page = usePage();
+
+const mainNavItems = computed<NavItem[]>(() => [
     {
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
     },
-    {
-        title: 'Tallas',
-        href: '/tallas',
-        icon: LayoutGrid,
-    },
-];
+    ...(page.props.auth.user?.rol === 2
+        ? [
+              {
+                  title: 'Tallas',
+                  href: '/tallas',
+                  icon: LayoutGrid,
+              },
+              {
+                    title: 'Colores',
+                    href: '/colores',
+                    icon: LayoutGrid,
+              },
+          ]
+        : []),
+]);
 
 const footerNavItems: NavItem[] = [
     {
