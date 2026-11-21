@@ -21,6 +21,17 @@ class ProductosController extends Controller
         ]);
     }
 
+    public function showUser(Productos $producto)
+    {
+        $producto->load(['categoria', 'color', 'talla']);
+
+        return inertia('productos/show', [
+            'producto' => $producto,
+        ]);
+    }
+
+    //Administrador
+
     public function index(Request $request)
     {
 

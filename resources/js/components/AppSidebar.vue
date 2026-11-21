@@ -7,6 +7,7 @@ import {
     Palette,
     Ruler,
     Shirt,
+    ShoppingCart,
     Sun,
     Tags,
     Users,
@@ -40,6 +41,11 @@ const mainNavItems = computed<NavItem[]>(() => [
         title: 'Productos',
         href: '/productos',
         icon: Shirt,
+    },
+    {
+        title: 'Carrito',
+        href: '/carrito',
+        icon: ShoppingCart,
     },
     ...(page.props.auth.user?.rol === 2
         ? [

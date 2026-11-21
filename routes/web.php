@@ -6,6 +6,7 @@ use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TallasController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('productos', [ProductosController::class, 'indexUser'])
         ->name('productos.indexUser');
+
+    Route::get('carrito', [CarritoController::class, 'index'])
+        ->name('carrito.ver');
+    Route::post('carrito/agregar', [CarritoController::class, 'agregarCarrito'])
+        ->name('carrito.agregar');
+    Route::post('carrito/disminuir', [CarritoController::class, 'disminuirCarrito'])
+        ->name('carrito.disminuir');
 
     Route::middleware('admin')->group(function () {
         Route::get('tallas', [TallasController::class, 'index'])
@@ -70,6 +78,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('productos', [ProductosController::class, 'indexUser'])
             ->name('productos.indexUser');
+        
+        Route::get('productos/showUser/{producto}', [ProductosController::class, 'showUser'])
+            ->name('productos.showUser');
 
         Route::get('productos/admin', [ProductosController::class, 'index'])
             ->name('productos.admin.index');
@@ -101,6 +112,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('usuarios.update');
         Route::delete('usuarios/{usuario}', [UsuariosController::class, 'destroy'])
             ->name('usuarios.destroy');
+
     });
 });
 
