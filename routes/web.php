@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ColoresController;
 use App\Http\Controllers\DashboardController;
@@ -78,6 +79,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('productos.admin.update');
         Route::delete('productos/admin/{producto}', [ProductosController::class, 'destroy'])
             ->name('productos.admin.destroy');
+
+        // Usuarios
+
+        Route::get('usuarios', [UsuariosController::class, 'index'])
+            ->name('usuarios.index');
+        Route::get('usuarios/crear', [UsuariosController::class, 'create'])
+            ->name('usuarios.create');
+        Route::get('usuarios/{usuario}', [UsuariosController::class, 'show']);
+        Route::post('usuarios', [UsuariosController::class, 'store'])
+            ->name('usuarios.store');
+        Route::get('usuarios/{usuario}/editar', [UsuariosController::class, 'edit'])
+            ->name('usuarios.edit');
+        Route::put('usuarios/{usuario}', [UsuariosController::class, 'update'])
+            ->name('usuarios.update');
+        Route::delete('usuarios/{usuario}', [UsuariosController::class, 'destroy'])
+            ->name('usuarios.destroy');
     });
 });
 

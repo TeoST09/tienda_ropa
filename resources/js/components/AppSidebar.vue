@@ -9,6 +9,7 @@ import {
     Shirt,
     Sun,
     Tags,
+    Users,
 } from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
@@ -43,9 +44,14 @@ const mainNavItems = computed<NavItem[]>(() => [
                   icon: Ruler,
               },
               {
-                    title: 'Colores',
-                    href: '/colores',
-                    icon: Palette,
+                  title: 'Colores',
+                  href: '/colores',
+                  icon: Palette,
+              },
+              {
+                  title: 'Usuarios',
+                  href: '/usuarios',
+                  icon: Users,
               },
               {
                   title: 'Categorías',
