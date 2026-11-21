@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ColoresController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\TallasController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
 
     Route::middleware('admin')->group(function () {
         Route::get('tallas', [TallasController::class, 'index'])

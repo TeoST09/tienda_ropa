@@ -30,8 +30,8 @@ defineProps<Props>();
                     >
                         <a
                             :href="toUrl(item.href)"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            :target="toUrl(item.href).startsWith('http') ? '_blank' : undefined"
+                            :rel="toUrl(item.href).startsWith('http') ? 'noopener noreferrer' : undefined"
                         >
                             <component :is="item.icon" />
                             <span>{{ item.title }}</span>
